@@ -44,6 +44,7 @@ public class JDBCInsert_v3 {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("commit");
         } finally {
             try {
                 connection.close();
