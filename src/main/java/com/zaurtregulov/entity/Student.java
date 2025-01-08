@@ -2,19 +2,23 @@ package com.zaurtregulov.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "students")
+@Table(name = "test_students")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "name")
+    @Column(name = "firstname", unique = true)
     private String name;
-    @Column(name = "surname")
+//    @Column(name = "surname")
     private String surname;
-    @Column(name = "avg_grade")
+    @Column(name = "avg_grade", nullable = false)
     private Double avgGrade;
+    @Transient
+    private LocalDateTime createdDate;
 
     public Student() {
     }
@@ -23,6 +27,7 @@ public class Student {
         this.name = name;
         this.surname = surname;
         this.avgGrade = avgGrade;
+        this.createdDate = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -57,6 +62,14 @@ public class Student {
         this.avgGrade = avgGrade;
     }
 
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -64,6 +77,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", avgGrade=" + avgGrade +
+                ", createdDate=" + createdDate +
                 '}';
     }
 }
