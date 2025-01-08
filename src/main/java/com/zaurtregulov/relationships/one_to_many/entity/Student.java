@@ -1,10 +1,11 @@
-package com.zaurtregulov.relationships.one_to_one.entity;
+package com.zaurtregulov.relationships.one_to_many.entity;
 
+import com.zaurtregulov.relationships.one_to_one.entity.Passport;
 import jakarta.persistence.*;
 
 
-//@Entity
-//@Table(name = "students")
+@Entity
+@Table(name = "students")
 public class Student {
 
 
@@ -19,9 +20,11 @@ public class Student {
     @Column(name = "avg_grade")
     private Double avgGrade;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "passport_id")
-    private Passport passport;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "university_id")
+    private University university;
+
+
 
 
     public Student() {
@@ -65,12 +68,12 @@ public class Student {
         this.avgGrade = avgGrade;
     }
 
-    public Passport getPassport() {
-        return passport;
+    public University getUniversity() {
+        return university;
     }
 
-    public void setPassport(Passport passport) {
-        this.passport = passport;
+    public void setUniversity(University university) {
+        this.university = university;
     }
 
     @Override
