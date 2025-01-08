@@ -1,6 +1,6 @@
-package com.zaurtregulov.jdbc_crud;
+package com.zaurtregulov.crud.jdbc_crud;
 
-import com.zaurtregulov.entity.Student;
+import com.zaurtregulov.crud.entity.Student;
 
 import java.sql.*;
 import java.util.ArrayList;

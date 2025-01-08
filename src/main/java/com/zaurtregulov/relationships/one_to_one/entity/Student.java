@@ -1,24 +1,28 @@
-package com.zaurtregulov.entity;
+package com.zaurtregulov.relationships.one_to_one.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "test_students")
+@Table(name = "students")
 public class Student {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "firstname", unique = true)
+    @Column(name = "name")
     private String name;
-//    @Column(name = "surname")
+    @Column(name = "surname")
     private String surname;
-    @Column(name = "avg_grade", nullable = false)
+    @Column(name = "avg_grade")
     private Double avgGrade;
-    @Transient
-    private LocalDateTime createdDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passport_id")
+    private Passport passport;
+
 
     public Student() {
     }
@@ -27,7 +31,6 @@ public class Student {
         this.name = name;
         this.surname = surname;
         this.avgGrade = avgGrade;
-        this.createdDate = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -62,12 +65,12 @@ public class Student {
         this.avgGrade = avgGrade;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+    public Passport getPassport() {
+        return passport;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 
     @Override
@@ -77,7 +80,6 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", avgGrade=" + avgGrade +
-                ", createdDate=" + createdDate +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.zaurtregulov.jdbc_crud;
+package com.zaurtregulov.crud.jdbc_crud;
 
 import java.sql.*;
 

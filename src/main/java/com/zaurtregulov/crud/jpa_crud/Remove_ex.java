@@ -1,24 +1,32 @@
-package com.zaurtregulov.jpa_crud;
+package com.zaurtregulov.crud.jpa_crud;
 
-import com.zaurtregulov.entity.Student;
+import com.zaurtregulov.crud.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class Find_ex {
+public class Remove_ex {
     public static void main(String[] args) {
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa-course");
         EntityManager entityManager = factory.createEntityManager();
-
+        EntityTransaction transaction = entityManager.getTransaction();
         Student student = null;
-        try{
-            student = entityManager.find(Student.class, 6);
-        } catch (Exception e){
 
+        try {
+            transaction.begin();
+            student = entityManager.find(Student.class, 1);
+            entityManager.remove(student);
+
+            transaction.commit();
+        } catch (Exception e){
+            if (transaction != null){
+                transaction.rollback();
+            }
             e.printStackTrace();
         } finally {
-            if(entityManager != null){
+            if (entityManager != null){
                 entityManager.close();
                 factory.close();
             }

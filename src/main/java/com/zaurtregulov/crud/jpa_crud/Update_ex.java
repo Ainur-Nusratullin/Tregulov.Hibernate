@@ -1,6 +1,6 @@
-package com.zaurtregulov.jpa_crud;
+package com.zaurtregulov.crud.jpa_crud;
 
-import com.zaurtregulov.entity.Student;
+import com.zaurtregulov.crud.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
